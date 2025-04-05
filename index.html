@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+    />
+    <!-- Tu CSS personalizado -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Tu JS personalizado -->
+    <script src="script.js" defer></script>
+    <title>Crear usuario</title>
+</head>
+<body>
+    <h1>Validar Formulario Contacto Bootstrap</h1>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Crear usuario</a>
+        </div>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="usuarios.html">Usuarios</a>
+          </div>
+    </nav>
+
+    <form id="myForm">
+        <!-- Contenedor para mostrar mensajes de error -->
+        <div id="message" class = "error-message"></div>
+        <div class="mb-3">
+            <label for="nombre"  class="form-label">Nombre:</label>
+            <input type="text" id="nombre" class="form-control"  name="nombre" placeholder="Introduce tu nombre" autofocus>
+        </div>
+        <div class="mb-3"> 
+            <label for="email"  class="form-label" >Correo electrónico:</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Introduce tu email">
+        </div>
+        <div class="mb-3">
+            <label for="contraseña"  class="form-label">Contraseña:</label>
+            <input type="password" class="form-control"  id="contraseña" name="contraseña" placeholder="Introduce una contraseña" autofocus>
+        </div>
+        <div class="mb-3"> 
+            <label for="repeatContraseña"  class="form-label" >Repite Contraseña:</label>
+            <input type="password" class="form-control" id="repeatContraseña" name="repeatContraseña" placeholder="Repite la contraseña">
+        </div>
+               
+        <input type="submit" class="btn btn-primary" id="submit" value="Registrar">
+    </form>
+</body>
+</html>

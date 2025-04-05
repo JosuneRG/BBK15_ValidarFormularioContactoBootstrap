@@ -37,15 +37,17 @@ function insertInfoLocalStorage(event)
     contactos.push(newUser);
     console.log(newUser);
 
-    localStorage.setItem('Users', JSON.stringify(contactos));
+    localStorage.setItem('contactos', JSON.stringify(contactos));
   
     console.log("Usuarios guardados:");
     console.log(contactos);
 }
 
-//Llamamos a la funcion del boton
-myForm.addEventListener('submit',saveInfoLocalStorage);
-
+//Llamamos a la funcion del boton del formulario
+if (myForm) 
+{
+    myForm.addEventListener('submit',saveInfoLocalStorage);
+}
 // ----------------------------------------------------------------------------------------
 function validacionCampos()
 {
@@ -116,32 +118,30 @@ function mostrarMensaje(mensaje, validado)
             divMessage.remove();
             window.location.href = "usuarios.html";
         }, 3000);
-}
     }
-    console.log("mensaje:", mensaje);
+    console.log("Mensaje:", mensaje);
+}
 
 
-// Muestra los mensajes utilizando los alerts de Bootstrap.
 
+// Obtener usuarios del localStorage
+const container = document.getElementById("usuarios-container");
 
-// const verusuarios = document.getElementById('verUsuarios');
-
-// function verUsuarios() 
-// {
-//     // Obtener el usuario del localStorage
-//     const usuario = JSON.parse(localStorage.getItem('usuario'));
+if (container) 
+{
+    contactos.forEach(contacto => {
+      const card = document.createElement("div");
+      card.className = "col-md-4";
   
-//     // Verificar si el usuario existe en localStorage
-//     if (usuario) 
-//     {
-//       console.log('Usuario desde localStorage:', usuario);
-//     } 
-//     else 
-//     {
-//       console.log('No se encontraron usuarios en el localStorage.');
-//     }
-// }
-
-
-// //Llamamos a la funcion del boton
-// verusuarios.addEventListener('submit',verUsuarios);
+      card.innerHTML = `
+        <div class="card h-100 shadow">
+          <div class="card-body">
+            <h5 class="card-title">${contacto.nameLocal}</h5>
+            <p class="card-text"><strong>Correo:</strong> ${contacto.emailLocal}</p>
+          </div>
+        </div>
+      `;
+  
+      container.appendChild(card);
+    });
+}

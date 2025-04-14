@@ -9,8 +9,8 @@ const message = document.getElementById('message');
 
 let validado = false;
 
-// Obtener los contactos previos desde localStorage o inicializar un array vacío
-const contactos = JSON.parse(localStorage.getItem('contactos')) || [];
+// 1 - Declara el array de contactos a nivel global
+let contactos = JSON.parse(localStorage.getItem('contactos')) || [];
 
 //Funcion para validar y insertar datos en localstorage
 function saveInfoLocalStorage(event)
@@ -24,7 +24,7 @@ function saveInfoLocalStorage(event)
 
 // Función para insertar los datos en localStorage
 function insertInfoLocalStorage(event)
-{
+{  
     //Crear array de valores
     const newUser = {
          nameLocal: username.value,
@@ -35,19 +35,15 @@ function insertInfoLocalStorage(event)
    
     // Crear un objeto con los datos del nuevo contacto
     contactos.push(newUser);
-    console.log(newUser);
+    console.log("Nuevo usuario:",newUser);
 
+    // Guardar el array actualizado en localStorage
     localStorage.setItem('contactos', JSON.stringify(contactos));
   
     console.log("Usuarios guardados:");
     console.log(contactos);
 }
 
-//Llamamos a la funcion del boton del formulario
-if (myForm) 
-{
-    myForm.addEventListener('submit',saveInfoLocalStorage);
-}
 // ----------------------------------------------------------------------------------------
 function validacionCampos()
 {
@@ -87,7 +83,7 @@ function validacionCampos()
     }
     // Al terminar de rellenar los datos del formulario correctamente muestra un mensaje durante 3 segundos que muestre “Usuario creado correctamente” y redirige a la vista Usuarios.
     mostrarMensaje("Usuario creado correctamente.", true)
-    
+    return true;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -122,26 +118,5 @@ function mostrarMensaje(mensaje, validado)
     console.log("Mensaje:", mensaje);
 }
 
-
-
-// Obtener usuarios del localStorage
-const container = document.getElementById("usuarios-container");
-
-if (container) 
-{
-    contactos.forEach(contacto => {
-      const card = document.createElement("div");
-      card.className = "col-md-4";
-  
-      card.innerHTML = `
-        <div class="card h-100 shadow">
-          <div class="card-body">
-            <h5 class="card-title">${contacto.nameLocal}</h5>
-            <p class="card-text"><strong>Correo:</strong> ${contacto.emailLocal}</p>
-          </div>
-        </div>
-      `;
-  
-      container.appendChild(card);
-    });
-}
+// Asignar el evento submit del formulario
+myForm.addEventListener('submit', saveInfoLocalStorage);

@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+function showUsers() 
+{
     // Obtener los contactos del localStorage
-    const contactos = JSON.parse(localStorage.getItem('Users')) || [];
-    
+    const contactos = JSON.parse(localStorage.getItem('contactos')) || [];
     // Obtener el contenedor donde se mostrarán las tarjetas
     const container = document.getElementById("usuarios-container");
   
@@ -31,10 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
     } 
-    else {
+    else if (container) 
+    {
       // Si no hay contactos, mostramos un mensaje
       const noContactsMessage = document.createElement("p");
       noContactsMessage.textContent = "No hay usuarios registrados.";
       container.appendChild(noContactsMessage);
     }
-  });
+}
+
+  if(window.location.pathname.includes("usuarios.html"))
+  {
+      console.log("Ejecutando en index.html");
+      showUsers();
+  }
